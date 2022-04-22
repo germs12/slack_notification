@@ -1,0 +1,25 @@
+---
+name: Example Workflow for Upstream Development
+on:
+  workflow_dispatch:
+    inputs:
+      commit:
+        required: true
+        default: $GITHUB_SHA
+
+env:
+  RUBY_VERSION: 2.7.4
+jobs:
+  example_job:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ env.RUBY_VERSION }}
+          bundler-cache: true
+
+      - name: Hello World
+        if: always()
+        run: |
+          echo "It works!"

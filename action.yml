@@ -1,0 +1,31 @@
+# action.yml
+name: "Slack Notification"
+description: "Create a Slack Notification"
+branding:
+  icon: anchor
+  color: gray-dark
+inputs:
+  slack-notification-channel:
+    description: "Slack Notification Channel"
+    required: true
+    default: ""
+  repository:
+    description: "Slack Notification Repository"
+    required: true
+    default: ""
+  revision:
+    description: "Slack Notification Deploy Revision"
+    required: true
+    default: ""
+  user:
+    description: "Slack Notification Deploy User"
+    required: true
+    default: ""
+outputs:
+  response:
+    description: "A hello world for the slack notification action"
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.slack-notification-channel }}
